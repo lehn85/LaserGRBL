@@ -41,6 +41,8 @@ namespace LaserGRBL
 
             CbContinuosJog.Checked = (bool)Settings.GetObject("Enable Continuous Jog", false);
             CbEnableZJog.Checked = (bool)Settings.GetObject("Enale Z Jog Control", false);
+
+            CbPlotter.Checked = (bool)Settings.GetObject("Plotter", false);
         }
 
         private void InitCoreCB()
@@ -100,6 +102,7 @@ namespace LaserGRBL
 			Settings.SetObject("HardReset Grbl On Connect", CbHardReset.Checked);
             Settings.SetObject("Enable Continuous Jog", CbContinuosJog.Checked);
             Settings.SetObject("Enale Z Jog Control", CbEnableZJog.Checked);
+            Settings.SetObject("Plotter", CbPlotter.Checked);
 			Settings.Save();
 
             if (SettingsChanged != null)

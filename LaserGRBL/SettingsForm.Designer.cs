@@ -66,6 +66,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.CbEnableZJog = new System.Windows.Forms.CheckBox();
             this.CbContinuosJog = new System.Windows.Forms.CheckBox();
+            this.CbPlotter = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.MainTabPage.SuspendLayout();
@@ -276,6 +278,8 @@
             this.tableLayoutPanel4.Controls.Add(this.CbUnidirectional, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.CBSupportPWM, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.BtnModulationInfo, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.CbPlotter, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.label12, 2, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             // 
             // label1
@@ -350,6 +354,17 @@
             this.CbContinuosJog.Name = "CbContinuosJog";
             this.CbContinuosJog.UseVisualStyleBackColor = true;
             // 
+            // CBPlotter
+            // 
+            resources.ApplyResources(this.CbPlotter, "CBPlotter");
+            this.CbPlotter.Name = "CBPlotter";
+            this.CbPlotter.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
@@ -418,5 +433,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox CbEnableZJog;
         private System.Windows.Forms.CheckBox CbContinuosJog;
+        private System.Windows.Forms.CheckBox CbPlotter;
+        private System.Windows.Forms.Label label12;
     }
 }
