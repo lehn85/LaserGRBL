@@ -525,10 +525,24 @@ namespace LaserGRBL
 		{
 			Core.OpenFile(this, null, true);
 		}
-	}
+
+        private GCodeEditor gCodeEditor;
+        private void gCodeEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (gCodeEditor == null)
+            {
+                gCodeEditor = new GCodeEditor(Core);
+                gCodeEditor.FormClosed += (s, ee) =>
+                {
+                    gCodeEditor = null;
+                };                
+                gCodeEditor.Show();
+            }
+        }
+    }
 
 
-	public class MMnRenderer : ToolStripProfessionalRenderer
+    public class MMnRenderer : ToolStripProfessionalRenderer
 	{
 		public MMnRenderer() : base(new CustomMenuColor()) { }
 

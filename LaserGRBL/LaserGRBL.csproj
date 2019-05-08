@@ -87,6 +87,9 @@
     <StartupObject>LaserGRBL.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastColoredTextBox, Version=2.16.24.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
+      <HintPath>..\packages\FCTB.2.16.24\lib\FastColoredTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -111,6 +114,12 @@
     </Compile>
     <Compile Include="Autotrace\Autotrace.cs" />
     <Compile Include="ComWrapper\ComLogger.cs" />
+    <Compile Include="GCodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeEditor.Designer.cs">
+      <DependentUpon>GCodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="SmoothieCore.cs" />
     <Compile Include="SvgConverter\ConvertSizeAndOptionForm.cs">
       <SubType>Form</SubType>
@@ -714,6 +723,9 @@
     <EmbeddedResource Include="ConnectLogForm.zh-CN.resx">
       <DependentUpon>ConnectLogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeEditor.resx">
+      <DependentUpon>GCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RunFromPositionForm.resx">
       <DependentUpon>RunFromPositionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -999,6 +1011,7 @@
     <None Include="Grafica\LaserGrbl.ico" />
     <None Include="Grafica\rotCCW.png" />
     <None Include="Grafica\rotCW.png" />
+    <None Include="packages.config" />
     <None Include="SvgLibrary\Basic Shapes\DOM.cd" />
     <EmbeddedResource Include="SvgLibrary\Resources\svg11.dtd" />
   </ItemGroup>
