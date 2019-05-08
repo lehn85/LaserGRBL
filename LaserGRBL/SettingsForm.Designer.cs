@@ -60,14 +60,14 @@
             this.CbUnidirectional = new System.Windows.Forms.CheckBox();
             this.CBSupportPWM = new System.Windows.Forms.CheckBox();
             this.BtnModulationInfo = new LaserGRBL.UserControls.ImageButton();
+            this.CbPlotter = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.TpJogControl = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.CbEnableZJog = new System.Windows.Forms.CheckBox();
             this.CbContinuosJog = new System.Windows.Forms.CheckBox();
-            this.CbPlotter = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.MainTabPage.SuspendLayout();
@@ -316,6 +316,17 @@
             this.BtnModulationInfo.UseAltImage = false;
             this.BtnModulationInfo.Click += new System.EventHandler(this.BtnModulationInfo_Click);
             // 
+            // CbPlotter
+            // 
+            resources.ApplyResources(this.CbPlotter, "CbPlotter");
+            this.CbPlotter.Name = "CbPlotter";
+            this.CbPlotter.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // TpJogControl
             // 
             this.TpJogControl.Controls.Add(this.tableLayoutPanel5);
@@ -353,17 +364,6 @@
             resources.ApplyResources(this.CbContinuosJog, "CbContinuosJog");
             this.CbContinuosJog.Name = "CbContinuosJog";
             this.CbContinuosJog.UseVisualStyleBackColor = true;
-            // 
-            // CBPlotter
-            // 
-            resources.ApplyResources(this.CbPlotter, "CBPlotter");
-            this.CbPlotter.Name = "CBPlotter";
-            this.CbPlotter.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
             // 
             // SettingsForm
             // 

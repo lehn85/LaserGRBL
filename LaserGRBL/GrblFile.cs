@@ -145,7 +145,7 @@ namespace LaserGRBL
 			{
 				cumX += mPixLen;
                 if (c.plotter)
-                    return string.Format("X{0} S{1}", formatnumber(cumX, c.oX, c), Fast(c) ? c.minPower : c.maxPower);
+                    return string.Format("X{0}", formatnumber(cumX, c.oX, c)); //movement only
                 else if (c.pwm)
                     return string.Format("X{0} S{1}", formatnumber(cumX, c.oX, c), mColor);
 				else
@@ -160,8 +160,8 @@ namespace LaserGRBL
 			public override string ToGCodeNumber(ref int cumX, ref int cumY, L2LConf c)
 			{
 				cumY += mPixLen;
-                if (c.plotter)
-                    return string.Format("Y{0} S{1}", formatnumber(cumY, c.oY, c), Fast(c) ? c.minPower : c.maxPower);
+                if (c.plotter)                   
+                    return string.Format("Y{0}", formatnumber(cumY, c.oY, c)); //movement only
                 else if (c.pwm)
 					return string.Format("Y{0} S{1}", formatnumber(cumY, c.oY, c), mColor);
 				else
@@ -177,8 +177,8 @@ namespace LaserGRBL
 			{
 				cumX += mPixLen;
 				cumY -= mPixLen;
-                if (c.plotter)
-                    return string.Format("X{0} Y{1} S{2}", formatnumber(cumX, c.oX, c), formatnumber(cumY, c.oY, c), Fast(c) ? c.minPower : c.maxPower);
+                if (c.plotter)                    
+                    return string.Format("X{0} Y{1}", formatnumber(cumX, c.oX, c), formatnumber(cumY, c.oY, c)); // movement only
                 else if (c.pwm)
 					return string.Format("X{0} Y{1} S{2}", formatnumber(cumX, c.oX, c), formatnumber(cumY, c.oY, c), mColor);
 				else
@@ -414,10 +414,15 @@ namespace LaserGRBL
 				fast = seg.Fast(c);
 
 
-				if (changeGMode)
-					temp.Add(new GrblCommand(String.Format("{0} {1}", fast ? "G0" : "G1", seg.ToGCodeNumber(ref cumX, ref cumY, c))));
-				else
-					temp.Add(new GrblCommand(seg.ToGCodeNumber(ref cumX, ref cumY, c)));
+                if (changeGMode)
+                {
+                    // change pen up/down if plotter
+                    if (c.plotter)
+                        temp.Add(new GrblCommand(string.Format("{0} S{1}", c.lOn, fast ? c.minPower : c.maxPower)));
+                    temp.Add(new GrblCommand(String.Format("{0} {1}", fast ? "G0" : "G1", seg.ToGCodeNumber(ref cumX, ref cumY, c))));
+                }
+                else
+                    temp.Add(new GrblCommand(seg.ToGCodeNumber(ref cumX, ref cumY, c)));
 			}
 
 			temp = OptimizeLine2Line(temp, c);
@@ -440,8 +445,17 @@ namespace LaserGRBL
 					cmd.BuildHelper();
 
 					bool oldcumulate = cumulate;
-
-					if (c.pwm)
+                    if (c.plotter)
+                    {
+                        if (cmd.S != null) //is S command
+                        {
+                            if (cmd.S.Number == c.minPower) //is S command with zero power
+                                cumulate = true;   //begin cumulate
+                            else
+                                cumulate = false;  //end cumulate
+                        }
+                    }
+					else if (c.pwm)
 					{
 						if (cmd.S != null) //is S command
 						{
@@ -463,7 +477,7 @@ namespace LaserGRBL
 					if (oldcumulate && !cumulate) //cumulate down front -> flush
 					{
                         if (c.plotter)
-                            list.Add(new GrblCommand(string.Format("G0 X{0} Y{1} S{2}", formatnumber((double)curX), formatnumber((double)curY), c.minPower))); //plotter pen up
+                            rv.Add(new GrblCommand(string.Format("G0 X{0} Y{1}", formatnumber((double)curX), formatnumber((double)curY)))); // movement without pen up/down                            
                         else if (c.pwm)
 							rv.Add(new GrblCommand(string.Format("G0 X{0} Y{1} S0", formatnumber((double)curX), formatnumber((double)curY))));
 						else
