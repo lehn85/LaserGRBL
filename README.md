@@ -11,6 +11,15 @@ Do you like LaserGRBL? Support development with your donation!
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/pools/c/8cQ1Lo4sRA)
 
+### Plotter support (lehn85's notes)
+- For plotter use grbl-servo firmware
+- Turn on plotter mode in settings
+- Turn off laser mode with $32 = 0
+- Only Line2line and vectorize works
+- In Gcode generation window, Set S-MIN for pen up; S-MAX for pen down. It generates M3 S{S-MIN} to lift pen up. M3 S{S-MAX} to drop pen down.
+- Future: Working on an option to Z axis to move pen up down
+Also added windows to view generated Gcode
+
 ### Existing Features
 
 - GCode file loading with engraving/cutting job preview (with alpha blending for grayscale engraving)
