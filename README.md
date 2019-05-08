@@ -18,6 +18,7 @@ Do you like LaserGRBL? Support development with your donation!
 - Only Line2line and vectorize works
 - In Gcode generation window, Set S-MIN for pen up; S-MAX for pen down. It generates M3 S{S-MIN} to lift pen up. M3 S{S-MAX} to drop pen down.
 - Future: Working on an option to Z axis to move pen up down
+
 Also added windows to view generated Gcode
 
 ### Existing Features
