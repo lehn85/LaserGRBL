@@ -98,6 +98,8 @@
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AwakeTimer = new System.Windows.Forms.Timer(this.components);
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gCodeEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -248,6 +250,7 @@
             this.MMn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnGrbl,
             this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.MNEsp8266,
             this.schemaToolStripMenuItem,
             this.linguaToolStripMenuItem,
@@ -581,6 +584,19 @@
             this.AwakeTimer.Interval = 20000;
             this.AwakeTimer.Tick += new System.EventHandler(this.AwakeTimer_Tick);
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gCodeEditorToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
+            // 
+            // gCodeEditorToolStripMenuItem
+            // 
+            this.gCodeEditorToolStripMenuItem.Name = "gCodeEditorToolStripMenuItem";
+            resources.ApplyResources(this.gCodeEditorToolStripMenuItem, "gCodeEditorToolStripMenuItem");
+            this.gCodeEditorToolStripMenuItem.Click += new System.EventHandler(this.gCodeEditorToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -675,6 +691,8 @@
 		private System.Windows.Forms.Timer AwakeTimer;
 		private System.Windows.Forms.ToolStripMenuItem MnStartFromPosition;
 		private System.Windows.Forms.ToolStripMenuItem MnFileAppend;
-	}
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gCodeEditorToolStripMenuItem;
+    }
 }
 
