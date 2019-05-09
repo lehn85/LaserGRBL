@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -132,6 +133,47 @@ namespace LaserGRBL
             }
         }
 
+        // context Menu on fastColoredTextBox
+        private void cmsCode_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Name == "cmsCodeSelect")
+                fCTBCode.SelectAll();
+            else if (e.ClickedItem.Name == "cmsCodeCopy")
+            {
+                if (fCTBCode.SelectedText.Length > 0)
+                    fCTBCode.Copy();
+            }
+            else if (e.ClickedItem.Name == "cmsCodePaste")
+                fCTBCode.Paste();
+            else if (e.ClickedItem.Name == "cmsCodeSendLine")
+            {
+                MessageBox.Show("Under construction");
+                //    int clickedLine = fCTBCode.Selection.ToLine;
+                //    sendCommand(fCTBCode.Lines[clickedLine], false);
+            }
+            else if (e.ClickedItem.Name == "cmsCommentOut")
+                fCTB_CheckUnknownCode();
+            else if (e.ClickedItem.Name == "cmsUpdate2DView")
+            {
+                MessageBox.Show("Under construction");
+                //    newCodeEnd();
+            }
+            else if (e.ClickedItem.Name == "cmsReplaceDialog")
+                fCTBCode.ShowReplaceDialog();
+            else if (e.ClickedItem.Name == "cmsFindDialog")
+                fCTBCode.ShowFindDialog();
+            else if (e.ClickedItem.Name == "cmsEditorHotkeys")
+            {
+                //showMessageForm(Properties.Resources.fctb_hotkeys);
+                MessageBox.Show("Under construction");
+            }
+        }
+
+        private void showMessageForm(string text)
+        {
+            MessageBox.Show(text, "Hotkeys");
+        }
+
         #endregion
 
         private GCodeEditor()
@@ -158,15 +200,30 @@ namespace LaserGRBL
             fCTBCode.Text = sb.ToString();
         }
 
-        private void CompileCode()
+        private IEnumerable<GrblCommand> CompileCode()
         {
-            var listGcode = new List<GrblCommand>();
+            // comment unknown code
+            fCTB_CheckUnknownCode();
             // compile line by line            
+            var lines = fCTBCode.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var listGcode = lines.Select(l => new GrblCommand(l));
+            return listGcode;
         }
 
         private void SaveCode()
         {
-            
+            var list = CompileCode();
+            Core.LoadedFile.LoadListGcode(list, false);
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadCode();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveCode();
         }
     }
 }

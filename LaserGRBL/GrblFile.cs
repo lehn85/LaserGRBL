@@ -110,6 +110,27 @@ namespace LaserGRBL
             RiseOnFileLoaded(filename, elapsed);
         }
 
+        public void LoadListGcode(IEnumerable<GrblCommand> listToAdd, bool append)
+        {
+            string filename = "ListGCode";
+            RiseOnFileLoading(filename);
+
+            long start = Tools.HiResTimer.TotalMilliseconds;
+
+            if (!append)
+                list.Clear();
+
+            mRange.ResetRange();
+
+            list.AddRange(listToAdd);
+
+            Analyze();
+
+            long elapsed = Tools.HiResTimer.TotalMilliseconds - start;
+
+            RiseOnFileLoaded(filename, elapsed);
+        }
+
 
         private abstract class ColorSegment
 		{
