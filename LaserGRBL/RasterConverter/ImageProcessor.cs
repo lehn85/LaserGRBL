@@ -862,7 +862,7 @@ namespace LaserGRBL.RasterConverter
 						conf.markSpeed = MarkSpeed;
 						conf.travelSpeed = TravelSpeed;
 						conf.minPower = MinPower;
-						conf.maxPower = MaxPower;
+						conf.maxPower = MaxPower;                        
 						conf.lOn = LaserOn;
 						conf.lOff = LaserOff;
 						conf.dir = SelectedTool == ImageProcessor.Tool.Vectorize ? FillingDirection : LineDirection;
@@ -871,6 +871,11 @@ namespace LaserGRBL.RasterConverter
 						conf.borderSpeed = BorderSpeed;
 						conf.pwm = (bool)Settings.GetObject("Support Hardware PWM", true);
                         conf.plotter = (bool)Settings.GetObject("Plotter", false);
+                        if (conf.plotter)
+                        {
+                            conf.lOn = string.Format("M3 S{0}", MaxPower);
+                            conf.lOff = string.Format("M3 S{0}", MinPower);
+                        }
 
 						if (SelectedTool == ImageProcessor.Tool.Line2Line || SelectedTool == ImageProcessor.Tool.Dithering)
 							mCore.LoadedFile.LoadImageL2L(bmp, mFileName, conf, mAppend);

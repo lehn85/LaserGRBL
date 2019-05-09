@@ -278,7 +278,7 @@ namespace LaserGRBL
 							//move fast to offset
 							list.Add(new GrblCommand(String.Format("G0 X{0} Y{1}", formatnumber(c.oX), formatnumber(c.oY))));
                             if (c.plotter)
-                                list.Add(new GrblCommand(String.Format("{0} S{1}", c.lOn, c.minPower))); //plotter pen up
+                                list.Add(new GrblCommand(c.lOff)); //plotter pen up
                             else if (c.pwm)
 								list.Add(new GrblCommand(String.Format("{0} S0", c.lOn))); //laser on and power to zero
 							else
@@ -291,10 +291,7 @@ namespace LaserGRBL
 							ImageLine2Line(resampled, c);
 
                             //laser off
-                            if (c.plotter)
-                                list.Add(new GrblCommand(String.Format("{0} S{1}", c.lOn, c.minPower))); //plotter pen up
-                            else
-                                list.Add(new GrblCommand(c.lOff));
+                            list.Add(new GrblCommand(c.lOff));
                         }
 					}
 				}
@@ -310,25 +307,19 @@ namespace LaserGRBL
 			list.Add(new GrblCommand(String.Format("G0 X{0} Y{1}", formatnumber(c.oX), formatnumber(c.oY))));
             //laser off and power to maxPower
             if (c.plotter)
-                list.Add(new GrblCommand(string.Format("{0} S{1}", c.lOn, c.minPower)));
+                list.Add(new GrblCommand(c.lOff)); //plotter pen up
             else
                 list.Add(new GrblCommand(String.Format("{0} S{1}", c.lOff, c.maxPower)));
 			//set speed to borderspeed
 			list.Add(new GrblCommand(String.Format("F{0}", c.borderSpeed)));
 
-			//trace borders            
-			List<string> gc = Potrace.Export2GCode(plist, c.oX, c.oY, c.res, 
-                c.plotter ? string.Format("{0} S{1}",c.lOn, c.maxPower) : c.lOn, 
-                c.plotter ? string.Format("{0} S{1}", c.lOn, c.minPower) : c.lOff, bmp.Size);
-
-			foreach (string code in gc)
+            //trace borders            
+            List<string> gc = Potrace.Export2GCode(plist, c.oX, c.oY, c.res, c.lOn, c.lOff, bmp.Size);
+            foreach (string code in gc)
 				list.Add(new GrblCommand(code));
 
             //laser off
-            if (c.plotter)
-                list.Add(new GrblCommand(string.Format("{0} S{1}", c.lOn, c.minPower)));
-            else
-                list.Add(new GrblCommand(String.Format("{0}", c.lOff)));
+            list.Add(new GrblCommand(String.Format("{0}", c.lOff)));
 
             //move fast to origin
             list.Add(new GrblCommand("G0 X0 Y0"));
@@ -387,7 +378,9 @@ namespace LaserGRBL
 			list.Add(new GrblCommand("G90"));
 			//move fast to offset
 			list.Add(new GrblCommand(String.Format("G0 X{0} Y{1}", formatnumber(c.oX), formatnumber(c.oY))));
-			if (c.pwm)
+            if (c.plotter)
+                list.Add(new GrblCommand(c.lOff));
+            else if (c.pwm)
 				list.Add(new GrblCommand(String.Format("{0} S0", c.lOn))); //laser on and power to zero
 			else
 				list.Add(new GrblCommand(String.Format("{0} S255", c.lOff))); //laser off and power to maxpower
@@ -425,7 +418,7 @@ namespace LaserGRBL
 				if (seg.IsSeparator && !fast) //fast = previous segment contains S0 color
 				{
                     if (c.plotter)
-                        list.Add(new GrblCommand(String.Format("{0} S{1}", c.lOn, c.minPower))); //plotter pen up
+                        list.Add(new GrblCommand(c.lOff)); //plotter pen up
                     else if (c.pwm)
 						temp.Add(new GrblCommand("S0"));
 					else
@@ -437,9 +430,9 @@ namespace LaserGRBL
 
                 if (changeGMode)
                 {
-                    // change pen up/down if plotter
+                    // change pen up/down if plotter (separate gcode line)
                     if (c.plotter)
-                        temp.Add(new GrblCommand(string.Format("{0} S{1}", c.lOn, fast ? c.minPower : c.maxPower)));
+                        temp.Add(new GrblCommand(fast ? c.lOff : c.lOn));
                     temp.Add(new GrblCommand(String.Format("{0} {1}", fast ? "G0" : "G1", seg.ToGCodeNumber(ref cumX, ref cumY, c))));
                 }
                 else
@@ -468,15 +461,12 @@ namespace LaserGRBL
 					bool oldcumulate = cumulate;
                     if (c.plotter)
                     {
-                        if (cmd.S != null) //is S command
-                        {
-                            if (cmd.S.Number == c.minPower) //is S command with zero power
-                                cumulate = true;   //begin cumulate
-                            else
-                                cumulate = false;  //end cumulate
-                        }
+                        if (cmd.Command == c.lOff) //if pen up 
+                            cumulate = true;   //begin cumulate
+                        else
+                            cumulate = false;  //end cumulate
                     }
-					else if (c.pwm)
+                    else if (c.pwm)
 					{
 						if (cmd.S != null) //is S command
 						{
