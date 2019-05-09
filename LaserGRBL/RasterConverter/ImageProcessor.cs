@@ -872,9 +872,9 @@ namespace LaserGRBL.RasterConverter
 						conf.pwm = (bool)Settings.GetObject("Support Hardware PWM", true);
                         conf.plotter = (bool)Settings.GetObject("Plotter", false);
                         if (conf.plotter)
-                        {
-                            conf.lOn = string.Format("M3 S{0}", MaxPower);
-                            conf.lOff = string.Format("M3 S{0}", MinPower);
+                        {                            
+                            conf.lOn = (string)Settings.GetObject("Plotter.PenDownCmd", "M3 S200");
+                            conf.lOff = (string)Settings.GetObject("Plotter.PenUpCmd", "M3 S0");
                         }
 
 						if (SelectedTool == ImageProcessor.Tool.Line2Line || SelectedTool == ImageProcessor.Tool.Dithering)

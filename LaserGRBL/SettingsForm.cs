@@ -43,6 +43,8 @@ namespace LaserGRBL
             CbEnableZJog.Checked = (bool)Settings.GetObject("Enale Z Jog Control", false);
 
             CbPlotter.Checked = (bool)Settings.GetObject("Plotter", false);
+            tbPenUpCmd.Text = (string)Settings.GetObject("Plotter.PenUpCmd", "M3 S0");
+            tbPenDownCmd.Text = (string)Settings.GetObject("Plotter.PenDownCmd", "M3 S200");
         }
 
         private void InitCoreCB()
@@ -103,7 +105,9 @@ namespace LaserGRBL
             Settings.SetObject("Enable Continuous Jog", CbContinuosJog.Checked);
             Settings.SetObject("Enale Z Jog Control", CbEnableZJog.Checked);
             Settings.SetObject("Plotter", CbPlotter.Checked);
-			Settings.Save();
+            Settings.SetObject("Plotter.PenUpCmd", tbPenUpCmd.Text);
+            Settings.SetObject("Plotter.PenDownCmd", tbPenDownCmd.Text);
+            Settings.Save();
 
             if (SettingsChanged != null)
                 SettingsChanged(this, null);

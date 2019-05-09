@@ -1033,72 +1033,6 @@ If not, please disable PWM support.</value>
   <data name="&gt;&gt;BtnModulationInfo.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="CbPlotter.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbPlotter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="CbPlotter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 83</value>
-  </data>
-  <data name="CbPlotter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 17</value>
-  </data>
-  <data name="CbPlotter.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="CbPlotter.Text" xml:space="preserve">
-    <value>Plotter</value>
-  </data>
-  <data name="&gt;&gt;CbPlotter.Name" xml:space="preserve">
-    <value>CbPlotter</value>
-  </data>
-  <data name="&gt;&gt;CbPlotter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbPlotter.Parent" xml:space="preserve">
-    <value>tableLayoutPanel4</value>
-  </data>
-  <data name="&gt;&gt;CbPlotter.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 83</value>
-  </data>
-  <data name="label12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="label12.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>690, 0</value>
-  </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>409, 13</value>
-  </data>
-  <data name="label12.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>Enable plotter mode, S-MIN as pen up, S-MAX as pen down. Use firmware grbl-servo.</value>
-  </data>
-  <data name="&gt;&gt;label12.Name" xml:space="preserve">
-    <value>label12</value>
-  </data>
-  <data name="&gt;&gt;label12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
-    <value>tableLayoutPanel4</value>
-  </data>
-  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="tableLayoutPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1127,7 +1061,7 @@ If not, please disable PWM support.</value>
     <value>0</value>
   </data>
   <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="CbUnidirectional" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="CBSupportPWM" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BtnModulationInfo" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbPlotter" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,23,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,Absolute,27,Absolute,21,Absolute,19,Absolute,13,Absolute,20,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="CbUnidirectional" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="CBSupportPWM" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BtnModulationInfo" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,23,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,Absolute,27,Absolute,21,Absolute,19,Absolute,13,Absolute,20,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="TpRasterImport.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1359,6 +1293,273 @@ NOTE: "Continuous Jog" only work with Grbl v1.1 or later, and require table size
   </data>
   <data name="&gt;&gt;TpJogControl.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="tableLayoutPanel6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tableLayoutPanel6.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="tableLayoutPanel6.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
+    <value>Single</value>
+  </data>
+  <data name="tableLayoutPanel6.ColumnCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="CbPlotter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbPlotter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbPlotter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 4</value>
+  </data>
+  <data name="CbPlotter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 17</value>
+  </data>
+  <data name="CbPlotter.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="CbPlotter.Text" xml:space="preserve">
+    <value>Plotter</value>
+  </data>
+  <data name="&gt;&gt;CbPlotter.Name" xml:space="preserve">
+    <value>CbPlotter</value>
+  </data>
+  <data name="&gt;&gt;CbPlotter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbPlotter.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="&gt;&gt;CbPlotter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label15.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 4</value>
+  </data>
+  <data name="label15.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="label15.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>690, 0</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>409, 17</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Enable plotter mode, S-MIN as pen up, S-MAX as pen down. Use firmware grbl-servo.</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tbPenUpCmd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 29</value>
+  </data>
+  <data name="tbPenUpCmd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="tbPenUpCmd.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="tbPenUpCmd.Text" xml:space="preserve">
+    <value>M3 S0</value>
+  </data>
+  <data name="&gt;&gt;tbPenUpCmd.Name" xml:space="preserve">
+    <value>tbPenUpCmd</value>
+  </data>
+  <data name="&gt;&gt;tbPenUpCmd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbPenUpCmd.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="&gt;&gt;tbPenUpCmd.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tbPenDownCmd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 57</value>
+  </data>
+  <data name="tbPenDownCmd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="tbPenDownCmd.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="tbPenDownCmd.Text" xml:space="preserve">
+    <value>M3 S200</value>
+  </data>
+  <data name="&gt;&gt;tbPenDownCmd.Name" xml:space="preserve">
+    <value>tbPenDownCmd</value>
+  </data>
+  <data name="&gt;&gt;tbPenDownCmd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbPenDownCmd.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="&gt;&gt;tbPenDownCmd.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label12.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 29</value>
+  </data>
+  <data name="label12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="label12.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>690, 0</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 21</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Pen up command. Ex. M3 S0; Z2;</value>
+  </data>
+  <data name="label12.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label13.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="label13.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 57</value>
+  </data>
+  <data name="label13.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="label13.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>690, 0</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 20</value>
+  </data>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Pen down command. Ex. M3 S200; Z0;</value>
+  </data>
+  <data name="label13.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tableLayoutPanel6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tableLayoutPanel6.RowCount" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="tableLayoutPanel6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>881, 305</value>
+  </data>
+  <data name="tableLayoutPanel6.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.Name" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.Parent" xml:space="preserve">
+    <value>TpPlotter</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel6.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="CbPlotter" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="tbPenUpCmd" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tbPenDownCmd" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,23,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,Absolute,27,Absolute,26,Absolute,14,Absolute,13,Absolute,20,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="TpPlotter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="TpPlotter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>881, 305</value>
+  </data>
+  <data name="TpPlotter.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="TpPlotter.Text" xml:space="preserve">
+    <value>Plotter</value>
+  </data>
+  <data name="&gt;&gt;TpPlotter.Name" xml:space="preserve">
+    <value>TpPlotter</value>
+  </data>
+  <data name="&gt;&gt;TpPlotter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TpPlotter.Parent" xml:space="preserve">
+    <value>MainTabPage</value>
+  </data>
+  <data name="&gt;&gt;TpPlotter.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="MainTabPage.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

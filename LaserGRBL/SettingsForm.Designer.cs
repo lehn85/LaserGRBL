@@ -60,14 +60,20 @@
             this.CbUnidirectional = new System.Windows.Forms.CheckBox();
             this.CBSupportPWM = new System.Windows.Forms.CheckBox();
             this.BtnModulationInfo = new LaserGRBL.UserControls.ImageButton();
-            this.CbPlotter = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.TpJogControl = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.CbEnableZJog = new System.Windows.Forms.CheckBox();
             this.CbContinuosJog = new System.Windows.Forms.CheckBox();
+            this.TpPlotter = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.CbPlotter = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbPenUpCmd = new System.Windows.Forms.TextBox();
+            this.tbPenDownCmd = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.MainTabPage.SuspendLayout();
@@ -77,6 +83,8 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.TpJogControl.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.TpPlotter.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -113,6 +121,7 @@
             this.MainTabPage.Controls.Add(this.TpHardware);
             this.MainTabPage.Controls.Add(this.TpRasterImport);
             this.MainTabPage.Controls.Add(this.TpJogControl);
+            this.MainTabPage.Controls.Add(this.TpPlotter);
             resources.ApplyResources(this.MainTabPage, "MainTabPage");
             this.MainTabPage.Name = "MainTabPage";
             this.MainTabPage.SelectedIndex = 0;
@@ -278,8 +287,6 @@
             this.tableLayoutPanel4.Controls.Add(this.CbUnidirectional, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.CBSupportPWM, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.BtnModulationInfo, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.CbPlotter, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.label12, 2, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             // 
             // label1
@@ -315,17 +322,6 @@
             this.BtnModulationInfo.SizingMode = LaserGRBL.UserControls.ImageButton.SizingModes.FixedSize;
             this.BtnModulationInfo.UseAltImage = false;
             this.BtnModulationInfo.Click += new System.EventHandler(this.BtnModulationInfo_Click);
-            // 
-            // CbPlotter
-            // 
-            resources.ApplyResources(this.CbPlotter, "CbPlotter");
-            this.CbPlotter.Name = "CbPlotter";
-            this.CbPlotter.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
             // 
             // TpJogControl
             // 
@@ -365,6 +361,55 @@
             this.CbContinuosJog.Name = "CbContinuosJog";
             this.CbContinuosJog.UseVisualStyleBackColor = true;
             // 
+            // TpPlotter
+            // 
+            this.TpPlotter.Controls.Add(this.tableLayoutPanel6);
+            resources.ApplyResources(this.TpPlotter, "TpPlotter");
+            this.TpPlotter.Name = "TpPlotter";
+            this.TpPlotter.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel6
+            // 
+            resources.ApplyResources(this.tableLayoutPanel6, "tableLayoutPanel6");
+            this.tableLayoutPanel6.Controls.Add(this.CbPlotter, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label15, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tbPenUpCmd, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.tbPenDownCmd, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.label12, 2, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label13, 2, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            // 
+            // CbPlotter
+            // 
+            resources.ApplyResources(this.CbPlotter, "CbPlotter");
+            this.CbPlotter.Name = "CbPlotter";
+            this.CbPlotter.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // tbPenUpCmd
+            // 
+            resources.ApplyResources(this.tbPenUpCmd, "tbPenUpCmd");
+            this.tbPenUpCmd.Name = "tbPenUpCmd";
+            // 
+            // tbPenDownCmd
+            // 
+            resources.ApplyResources(this.tbPenDownCmd, "tbPenDownCmd");
+            this.tbPenDownCmd.Name = "tbPenDownCmd";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
             // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
@@ -389,6 +434,10 @@
             this.TpJogControl.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.TpPlotter.ResumeLayout(false);
+            this.TpPlotter.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -433,7 +482,13 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox CbEnableZJog;
         private System.Windows.Forms.CheckBox CbContinuosJog;
+        private System.Windows.Forms.TabPage TpPlotter;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.CheckBox CbPlotter;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbPenUpCmd;
+        private System.Windows.Forms.TextBox tbPenDownCmd;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
