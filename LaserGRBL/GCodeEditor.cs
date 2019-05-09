@@ -143,14 +143,30 @@ namespace LaserGRBL
         {
             Core = c;
 
+            LoadCode();
+        }
+
+        private void LoadCode()
+        {
             StringBuilder sb = new StringBuilder();
 
-            foreach(GrblCommand cmd in Core.LoadedFile)
+            foreach (GrblCommand cmd in Core.LoadedFile)
             {
                 sb.Append(cmd.Command + "\r\n");
             }
 
             fCTBCode.Text = sb.ToString();
+        }
+
+        private void CompileCode()
+        {
+            var listGcode = new List<GrblCommand>();
+            // compile line by line            
+        }
+
+        private void SaveCode()
+        {
+            
         }
     }
 }

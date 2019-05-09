@@ -51,16 +51,25 @@ namespace LaserGRBL.SvgConverter
 		private static bool gcodeNoArcs = false;        // replace arcs by line segments
 		private static float gcodeAngleStep = 1.0f;
 
-		private static int mDecimalPlaces = 2;
+		private static int mDecimalPlaces = 2;        
+
+        // plotter support
+        private static bool isPlotter = false;
+        private static int gcodeMinPower;
+        private static int gcodeMaxPower;
 
 
-		public static void setup()
+        public static void setup()
 		{
 			setDecimalPlaces(mDecimalPlaces);
 
 			gcodeXYFeed = (float)(int)Settings.GetObject("GrayScaleConversion.VectorizeOptions.BorderSpeed", 1000);
 			gcodeSpindleSpeed = (float)(int)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMax", 255); ;
 			gcodeSpindleCmd = (string)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.LaserOn", "M3");
+            gcodeMinPower = (int)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMin", 0);
+            gcodeMaxPower = (int)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMax", 255);
+
+            isPlotter = (bool)Settings.GetObject("Plotter", false);            
 
 			lastMovewasG0 = true;
 			lastx = -1; lasty = -1; lastz = 0;
@@ -135,13 +144,19 @@ namespace LaserGRBL.SvgConverter
 		public static void SpindleOn(StringBuilder gcodeString, string cmt = "")
 		{
 			if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-			gcodeString.AppendFormat("{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeSpindleSpeed, cmt);
-		}
+            if (isPlotter)
+                gcodeString.AppendFormat("{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeMaxPower, cmt);
+            else
+                gcodeString.AppendFormat("{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeSpindleSpeed, cmt);
+        }
 
 		public static void SpindleOff(StringBuilder gcodeString, string cmt = "")
 		{
 			if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-			gcodeString.AppendFormat("M{0} {1}\r\n", frmtCode(5), cmt);
+            if (isPlotter)
+                gcodeString.AppendFormat("{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeMinPower, cmt);
+            else
+                gcodeString.AppendFormat("M{0} {1}\r\n", frmtCode(5), cmt);
 		}
 
 		public static void PenDown(StringBuilder gcodeString, string cmto = "")
