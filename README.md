@@ -12,14 +12,15 @@ Do you like LaserGRBL? Support development with your donation!
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/pools/c/8cQ1Lo4sRA)
 
 ### Plotter support (lehn85's notes)
-- For plotter use grbl-servo firmware
-- Turn on plotter mode in settings
+- For plotter use: grbl-servo firmware
 - Turn off laser mode with $32 = 0
-- Only Line2line and vectorize works
-- In Gcode generation window, Set S-MIN for pen up; S-MAX for pen down. It generates M3 S{S-MIN} to lift pen up. M3 S{S-MAX} to drop pen down.
-- Future: Working on an option to Z axis to move pen up down
+- Turn on plotter mode in settings, tab page plotter
+- Also in tab page plotter, set pen up/down command like M3 S0/M3 Sxxx. It is expected that Z movement should work, but I don't have a plotter like that.
 
-Also added windows to view generated Gcode
+### GCode editor window (lehn85's notes)
+- View and edit generated Gcode. 
+- Click save to save change and preview changes
+- Future features: flip, rotate, offset, scale all gcode
 
 ### Existing Features
 

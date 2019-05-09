@@ -55,8 +55,8 @@ namespace LaserGRBL.SvgConverter
 
         // plotter support
         private static bool isPlotter = false;
-        private static int gcodeMinPower;
-        private static int gcodeMaxPower;
+        private static string gcodePenUp;
+        private static string gcodePenDown;
 
 
         public static void setup()
@@ -65,13 +65,16 @@ namespace LaserGRBL.SvgConverter
 
 			gcodeXYFeed = (float)(int)Settings.GetObject("GrayScaleConversion.VectorizeOptions.BorderSpeed", 1000);
 			gcodeSpindleSpeed = (float)(int)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMax", 255); ;
-			gcodeSpindleCmd = (string)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.LaserOn", "M3");
-            gcodeMinPower = (int)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMin", 0);
-            gcodeMaxPower = (int)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMax", 255);
+			gcodeSpindleCmd = (string)Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.LaserOn", "M3");            
 
-            isPlotter = (bool)Settings.GetObject("Plotter", false);            
+            isPlotter = (bool)Settings.GetObject("Plotter", false);
+            if (isPlotter)
+            {
+                gcodePenDown = (string)Settings.GetObject("Plotter.PenDownCmd", "M3 S200");
+                gcodePenUp = (string)Settings.GetObject("Plotter.PenUpCmd", "M3 S0");
+            }
 
-			lastMovewasG0 = true;
+            lastMovewasG0 = true;
 			lastx = -1; lasty = -1; lastz = 0;
 		}
 
@@ -145,7 +148,7 @@ namespace LaserGRBL.SvgConverter
 		{
 			if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
             if (isPlotter)
-                gcodeString.AppendFormat("{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeMaxPower, cmt);
+                gcodeString.AppendFormat("{0} {1}\r\n", gcodePenDown, cmt);
             else
                 gcodeString.AppendFormat("{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeSpindleSpeed, cmt);
         }
@@ -154,7 +157,7 @@ namespace LaserGRBL.SvgConverter
 		{
 			if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
             if (isPlotter)
-                gcodeString.AppendFormat("{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeMinPower, cmt);
+                gcodeString.AppendFormat("{0} {1}\r\n", gcodePenUp, cmt);
             else
                 gcodeString.AppendFormat("M{0} {1}\r\n", frmtCode(5), cmt);
 		}
