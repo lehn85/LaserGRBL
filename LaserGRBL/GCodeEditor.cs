@@ -15,6 +15,10 @@ namespace LaserGRBL
     {
         public GrblCore Core { get; private set; }
 
+        private List<GrblCommand> backup;
+
+        private GCodeTransform.TransformParam lastTransformParam = new GCodeTransform.TransformParam();
+
         #region FCTB
 
         // highlight code in editor
@@ -185,14 +189,17 @@ namespace LaserGRBL
         {
             Core = c;
 
-            LoadCode();
+            backup = Core.LoadedFile.Select(cmd => new GrblCommand(cmd.Command)).ToList();
+
+            loadGCodeToEditor();
         }
 
-        private void LoadCode()
+        private void loadGCodeToEditor(IEnumerable<GrblCommand> list = null)
         {
             StringBuilder sb = new StringBuilder();
-
-            foreach (GrblCommand cmd in Core.LoadedFile)
+            if (list == null)
+                list = Core.LoadedFile;
+            foreach (GrblCommand cmd in list)
             {
                 sb.Append(cmd.Command + "\r\n");
             }
@@ -210,20 +217,42 @@ namespace LaserGRBL
             return listGcode;
         }
 
-        private void SaveCode()
+        internal void SaveCode()
         {
             var list = CompileCode();
             Core.LoadedFile.LoadListGcode(list, false);
         }
 
-        private void btnReload_Click(object sender, EventArgs e)
+        private void btnRevert_Click(object sender, EventArgs e)
         {
-            LoadCode();
+            //restore from backup
+            Core.LoadedFile.LoadListGcode(backup, false);
+            //load to editor 
+            loadGCodeToEditor();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveCode();
         }
+
+        private void btn_transform_Click(object sender, EventArgs e)
+        {
+            var form = new GCodeTransform(Core, CompileCode().ToList());
+            form.TransParam = lastTransformParam;
+
+            var result = form.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                //save transform
+                //lastTransformParam = form.TransParam;
+                //doTransform(lastTransformParam);
+                // apply to editor
+                if (form.Result != null)
+                    loadGCodeToEditor(form.Result);
+            }
+        }
+
+
     }
 }

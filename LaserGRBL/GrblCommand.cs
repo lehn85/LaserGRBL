@@ -170,6 +170,13 @@ namespace LaserGRBL
 
 		public void DeleteHelper()
 		{mHelper = null;}
+
+        public Dictionary<char, Element> GetElements()
+        {
+            if (!JustBuilt)
+                BuildHelper();
+            return mHelper;
+        }
 		
 		public void SetOffset(TimeSpan Time)
 		{mTimeOffset = Time;}

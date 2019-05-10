@@ -47,8 +47,9 @@
             this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_transform = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnReload = new System.Windows.Forms.Button();
+            this.btnRevert = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             this.cmsCode.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -200,13 +201,24 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btn_transform);
             this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Controls.Add(this.btnReload);
+            this.panel1.Controls.Add(this.btnRevert);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(735, 30);
             this.panel1.TabIndex = 0;
+            // 
+            // btn_transform
+            // 
+            this.btn_transform.Location = new System.Drawing.Point(246, 4);
+            this.btn_transform.Name = "btn_transform";
+            this.btn_transform.Size = new System.Drawing.Size(75, 23);
+            this.btn_transform.TabIndex = 1;
+            this.btn_transform.Text = "Transform";
+            this.btn_transform.UseVisualStyleBackColor = true;
+            this.btn_transform.Click += new System.EventHandler(this.btn_transform_Click);
             // 
             // btnSave
             // 
@@ -218,15 +230,15 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnReload
+            // btnRevert
             // 
-            this.btnReload.Location = new System.Drawing.Point(9, 3);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(75, 23);
-            this.btnReload.TabIndex = 0;
-            this.btnReload.Text = "Reload";
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            this.btnRevert.Location = new System.Drawing.Point(9, 3);
+            this.btnRevert.Name = "btnRevert";
+            this.btnRevert.Size = new System.Drawing.Size(75, 23);
+            this.btnRevert.TabIndex = 0;
+            this.btnRevert.Text = "Revert";
+            this.btnRevert.UseVisualStyleBackColor = true;
+            this.btnRevert.Click += new System.EventHandler(this.btnRevert_Click);
             // 
             // GCodeEditor
             // 
@@ -250,7 +262,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.Button btnRevert;
         private System.Windows.Forms.ContextMenuStrip cmsCode;
         private System.Windows.Forms.ToolStripMenuItem cmsEditorHotkeys;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
@@ -265,5 +277,6 @@
         private System.Windows.Forms.ToolStripMenuItem cmsCommentOut;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem cmsUpdate2DView;
+        private System.Windows.Forms.Button btn_transform;
     }
 }

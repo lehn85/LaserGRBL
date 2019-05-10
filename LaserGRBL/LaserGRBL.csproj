@@ -120,6 +120,12 @@
     <Compile Include="GCodeEditor.Designer.cs">
       <DependentUpon>GCodeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCodeTransform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeTransform.Designer.cs">
+      <DependentUpon>GCodeTransform.cs</DependentUpon>
+    </Compile>
     <Compile Include="SmoothieCore.cs" />
     <Compile Include="SvgConverter\ConvertSizeAndOptionForm.cs">
       <SubType>Form</SubType>
@@ -726,6 +732,9 @@
     <EmbeddedResource Include="GCodeEditor.resx">
       <DependentUpon>GCodeEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeTransform.resx">
+      <DependentUpon>GCodeTransform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RunFromPositionForm.resx">
       <DependentUpon>RunFromPositionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1012,6 +1021,7 @@
     <None Include="Grafica\rotCCW.png" />
     <None Include="Grafica\rotCW.png" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\GCodeTransform.TransformParam.datasource" />
     <None Include="SvgLibrary\Basic Shapes\DOM.cd" />
     <EmbeddedResource Include="SvgLibrary\Resources\svg11.dtd" />
   </ItemGroup>
@@ -1073,7 +1083,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
     <Folder Include="SvgLibrary\Web\Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
