@@ -17,8 +17,6 @@ namespace LaserGRBL
 
         private List<GrblCommand> backup;
 
-        private GCodeTransform.TransformParam lastTransformParam = new GCodeTransform.TransformParam();
-
         #region FCTB
 
         // highlight code in editor
@@ -239,7 +237,7 @@ namespace LaserGRBL
         private void btn_transform_Click(object sender, EventArgs e)
         {
             var form = new GCodeTransform(Core, CompileCode().ToList());
-            form.TransParam = lastTransformParam;
+            //form.TransParam = lastTransformParam;
 
             var result = form.ShowDialog();
             if (result == DialogResult.OK)

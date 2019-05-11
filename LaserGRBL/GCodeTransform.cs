@@ -134,13 +134,15 @@ namespace LaserGRBL
             double curX = 0;
             double curY = 0;
 
-            var cost = Math.Cos(Math.PI * TransParam.Angle / 180);
-            var sint = Math.Sin(Math.PI * TransParam.Angle / 180);
+            //minus: convert to clockwise/counterclockwise system
+            var cost = Math.Cos(Math.PI * (-TransParam.Angle) / 180);
+            var sint = Math.Sin(Math.PI * (-TransParam.Angle) / 180);
+            var rotateRequired = (TransParam.Angle != 0);
 
             var list = new List<GrblCommand>();
 
             foreach (var cmd in originList)
-            {                
+            {
                 cmd.BuildHelper();
                 var elements = cmd.GetElements();
 
@@ -156,16 +158,22 @@ namespace LaserGRBL
                     // scale
                     var x1 = (x - TransParam.BaseX) * TransParam.ScaleX + TransParam.BaseX;
                     var y1 = (y - TransParam.BaseY) * TransParam.ScaleY + TransParam.BaseY;
-                    // rotate                    
-                    var x2 = (x1 - TransParam.BaseX) * cost - (y1 - TransParam.BaseY) * sint + TransParam.BaseX;
-                    var y2 = (y1 - TransParam.BaseY) * cost + (x1 - TransParam.BaseX) * sint + TransParam.BaseY;
+                    // rotate   
+                    var x2 = x1;
+                    var y2 = y1;
+                    if (rotateRequired)
+                    {
+                        x2 = (x1 - TransParam.BaseX) * cost - (y1 - TransParam.BaseY) * sint + TransParam.BaseX;
+                        y2 = (y1 - TransParam.BaseY) * cost + (x1 - TransParam.BaseX) * sint + TransParam.BaseY;
+                    }
                     // translate
                     var x3 = x2 + TransParam.DX;
                     var y3 = y2 + TransParam.DY;
 
-                                        
-                    elements['X'] = new GrblCommand.Element('X', Math.Round(Convert.ToDecimal(x3), 4));
-                    elements['Y'] = new GrblCommand.Element('Y', Math.Round(Convert.ToDecimal(y3), 4));
+                    if (rotateRequired || cmd.X != null)
+                        elements['X'] = new GrblCommand.Element('X', Math.Round(Convert.ToDecimal(x3), 4));
+                    if (rotateRequired || cmd.Y != null)
+                        elements['Y'] = new GrblCommand.Element('Y', Math.Round(Convert.ToDecimal(y3), 4));
 
                     // apply change
                     list.Add(new GrblCommand(elements.Values));
@@ -177,25 +185,35 @@ namespace LaserGRBL
                     double y = cmd.Y != null ? Convert.ToDouble(cmd.Y.Number) : curY;
                     double i = cmd.I != null ? Convert.ToDouble(cmd.I.Number) : 0;
                     double j = cmd.J != null ? Convert.ToDouble(cmd.J.Number) : 0;
-                    // scale
+                    // scale                    
                     var x1 = (x - TransParam.BaseX) * TransParam.ScaleX + TransParam.BaseX;
                     var y1 = (y - TransParam.BaseY) * TransParam.ScaleY + TransParam.BaseY;
                     var i1 = i * TransParam.ScaleX;
                     var j1 = j * TransParam.ScaleY;
                     // rotate                    
-                    var x2 = (x1 - TransParam.BaseX) * cost - (y1 - TransParam.BaseY) * sint + TransParam.BaseX;
-                    var y2 = (y1 - TransParam.BaseY) * cost + (x1 - TransParam.BaseX) * sint + TransParam.BaseY;
-                    var i2 = i1 * cost - j1 * sint;
-                    var j2 = j1 * cost + i1 * sint;
-
+                    var x2 = x1;
+                    var y2 = y1;
+                    var i2 = i1;
+                    var j2 = j1;
+                    if (rotateRequired)
+                    {
+                        x2 = (x1 - TransParam.BaseX) * cost - (y1 - TransParam.BaseY) * sint + TransParam.BaseX;
+                        y2 = (y1 - TransParam.BaseY) * cost + (x1 - TransParam.BaseX) * sint + TransParam.BaseY;
+                        i2 = i1 * cost - j1 * sint;
+                        j2 = j1 * cost + i1 * sint;
+                    }
                     // translate
                     var x3 = x2 + TransParam.DX;
-                    var y3 = y2 + TransParam.DY;                    
+                    var y3 = y2 + TransParam.DY;
 
-                    elements['X'] = new GrblCommand.Element('X', Math.Round(Convert.ToDecimal(x3), 4));
-                    elements['Y'] = new GrblCommand.Element('Y', Math.Round(Convert.ToDecimal(y3), 4));
-                    elements['I'] = new GrblCommand.Element('I', Math.Round(Convert.ToDecimal(i2), 4));
-                    elements['J'] = new GrblCommand.Element('J', Math.Round(Convert.ToDecimal(j2), 4));
+                    if (rotateRequired || cmd.X != null)
+                        elements['X'] = new GrblCommand.Element('X', Math.Round(Convert.ToDecimal(x3), 4));
+                    if (rotateRequired || cmd.Y != null)
+                        elements['Y'] = new GrblCommand.Element('Y', Math.Round(Convert.ToDecimal(y3), 4));
+                    if (rotateRequired || cmd.I != null)
+                        elements['I'] = new GrblCommand.Element('I', Math.Round(Convert.ToDecimal(i2), 4));
+                    if (rotateRequired || cmd.J != null)
+                        elements['J'] = new GrblCommand.Element('J', Math.Round(Convert.ToDecimal(j2), 4));
 
                     // apply change
                     list.Add(new GrblCommand(elements.Values));

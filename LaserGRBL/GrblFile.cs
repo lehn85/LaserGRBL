@@ -799,7 +799,12 @@ namespace LaserGRBL
 						{
 							pen.ScaleTransform(1 / zoom, 1 / zoom);
 
-							if (!spb.LaserBurning)
+                            if (spb.IsPlotter && !spb.PlotterPenIsDown)
+                            {                                
+                                pen.DashStyle = DashStyle.Dash;
+                                pen.DashPattern = new float[] { 1f, 1f };
+                            }
+							else if (!spb.LaserBurning)
 							{
 								pen.DashStyle = DashStyle.Dash;
 								pen.DashPattern = new float[] { 1f, 1f };

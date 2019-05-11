@@ -18,7 +18,12 @@ namespace LaserGRBL
 		{
 			bool supportPWM = (bool)Settings.GetObject("Support Hardware PWM", true);
 
-			public class CumulativeElement : Element
+            public bool IsPlotter { get; private set; } = (bool)Settings.GetObject("Plotter", false);
+            public bool PlotterPenIsDown { get; private set; } = false;
+            string plotterPenDownCmd = ((string) Settings.GetObject("Plotter.PenDownCmd", "M3 S200")).ToUpper();
+            string plotterPenUpCmd = ((string) Settings.GetObject("Plotter.PenUpCmd", "M3 S0")).ToUpper();            
+
+            public class CumulativeElement : Element
 			{
 				Element mDefault = null;
 				bool mSettled = false;
@@ -92,6 +97,15 @@ namespace LaserGRBL
 				UpdateWCO(cmd);
 				UpdateXYZ(cmd);
 				UpdateFS(cmd);
+
+                if (IsPlotter)
+                {
+                    var cmdStr = cmd.Command.ToUpper();
+                    if (cmdStr.Contains(plotterPenDownCmd))
+                        PlotterPenIsDown = true;
+                    else if (cmdStr.Contains(plotterPenUpCmd))
+                        PlotterPenIsDown = false;
+                }
 
 				TimeSpan rv = compute ? ComputeExecutionTime(cmd, conf) : TimeSpan.Zero;
 				if (delete) cmd.DeleteHelper();
@@ -192,12 +206,14 @@ namespace LaserGRBL
 
 			internal int GetCurrentAlpha(ProgramRange.SRange range)
 			{
-				if (!LaserBurning)
-					return 150; //supportPWM ? 150 : 50
-				else if (supportPWM && range.ValidRange && S.IsSettled)
-					return (int)((S.Number - range.S.Min) * 255 / (range.S.Max - range.S.Min));
-				else
-					return 255;
+                if (IsPlotter)
+                    return PlotterPenIsDown ? 200 : 50;
+                else if (!LaserBurning)
+                    return 150; //supportPWM ? 150 : 50
+                else if (supportPWM && range.ValidRange && S.IsSettled)
+                    return (int)((S.Number - range.S.Min) * 255 / (range.S.Max - range.S.Min));
+                else
+                    return 255;
 			}
 
 			public bool G2
