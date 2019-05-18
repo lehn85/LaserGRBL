@@ -461,13 +461,10 @@ namespace LaserGRBL
 					bool oldcumulate = cumulate;
                     if (c.plotter)
                     {
-                        if (cmd.S != null) //is S command
-                        {
-                            if (cmd.S.Number == c.minPower) //is S command with zero power
-                                cumulate = true;   //begin cumulate
-                            else
-                                cumulate = false;  //end cumulate
-                        }
+                        if (cmd.Command == c.lOff) //is S command with zero power
+                            cumulate = true;   //begin cumulate
+                        else if (cmd.Command == c.lOn)
+                            cumulate = false;  //end cumulate
                     }
                     else if (c.pwm)
 					{
